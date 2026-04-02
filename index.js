@@ -170,13 +170,11 @@ app.post("/submitQuiz", authenticate, async (req, res) => {
     user.averageScores.push(averageScore);
     await user.save();
 
-    res
-      .status(200)
-      .json({
-        message: "Quiz submitted successfully",
-        averageScore,
-        allScores: user.averageScores,
-      });
+    res.status(200).json({
+      message: "Quiz submitted successfully",
+      averageScore,
+      allScores: user.averageScores,
+    });
   } catch (error) {
     console.error("Error submitting quiz:", error);
     res.status(500).json({ message: "Error submitting quiz" });
@@ -229,12 +227,10 @@ app.post("/AI_Chat", async (req, res) => {
 
     // Handle Quota/Rate Limit specifically if possible
     if (err.message?.includes("429") || err.status === 429) {
-      return res
-        .status(429)
-        .json({
-          error:
-            "AI Quota exceeded. Please try again later or check your billing.",
-        });
+      return res.status(429).json({
+        error:
+          "AI Quota exceeded. Please try again later or check your billing.",
+      });
     }
 
     res.status(500).json({ error: "Server error with AI" });
@@ -274,6 +270,7 @@ app.get("/Dashboard", authenticate, (req, res) => {
 });
 
 // Start Server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+// Start Server for Render
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server is running on port ${port}`);
 });
