@@ -33,4 +33,3 @@
 - **Security:** Dotenv, Git/GitHub Environment Management
 
 _Developed by Ayesha - Computer Engineering 2026_
-git rm --cached public/manage/These\ Dreams_HD.mp4
